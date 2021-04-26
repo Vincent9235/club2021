@@ -60,6 +60,7 @@ if (isset($_POST['club_name']) && isset($_POST['club_adr']) && isset($_POST['clu
         ':club_email' => $_POST['club_email']
     ));
     echo("<div class='txt-center'><div class='success-msg'><i class='fa fa-check'></i> Le club a bien été ajouté </div></div>");
+    echo 'Cliquez <a href="club.php">ici</a> pour revenir à la page club.';
 }
 ?>
 </form>

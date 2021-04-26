@@ -42,6 +42,7 @@ if(!empty($_GET['q'])){
    define('PER_PAGE', 20);
    $page = (int)(isset($_GET['p'])?$_GET['p']:1);
    $offset = ($page-1)*PER_PAGE; 
+   $query .= " ORDER BY user_id DESC "; //Affiche les utilisateurs les plus récents en premier
    $query .= " LIMIT " . PER_PAGE . " OFFSET $offset";
    $statement = $pdo->prepare($query);
    $statement->execute($params);

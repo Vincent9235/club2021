@@ -29,6 +29,7 @@ if ($_SESSION['auth']->role_role == 'member') {
     $query = "SELECT * FROM ligues ";
     $queryCount = "SELECT count(ligue_id) as count FROM ligues";
     $params = [];
+    
     //Recherche par nom
     if (!empty($_GET['q'])) {
         $query .= " WHERE ligue_nom LIKE :ligue_nom";

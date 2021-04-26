@@ -112,9 +112,8 @@ if ($_SESSION['auth']->role_role == 'member') {
                 $req->execute();
                 $executeIsOK = $req->execute();
                 if ($executeIsOK) {
-                    header("refresh:3;url=membres.php");
                     echo ("<div class='txt-center'><div class='success-msg'><i class='fa fa-check'></i> L'utilisateur a bien été modifié</div></div>");
-                    echo 'Les données vont être rafraichies dans 3 secondes. Sinon cliquez <a href="membres.php">ici</a>.';
+                    echo "<div class='txt-center'>Cliquez <a href='membres.php'>ici</a> pour revenir à la page membre.</div>";
                 } else {
                     echo ("<div class='txt-center'><div class='error-msg'><i class='fa fa-times-circle'></i> La modification a échouée</div></div>");
                 }

@@ -91,14 +91,13 @@ if ($_SESSION['auth']->role_role == 'member') {
             $login1 = strtolower($substr . "." . $nom);
 
             //REQUETE SQL POUR INSERER EN BASE
-            $req = $pdo->prepare('INSERT INTO Users (user_login, user_nom,user_prenom, user_mdp, user_email, user_naissance, user_adresse, user_tel, user_cp, user_ville, role_id) 
-                        VALUES(:login1,:nom,:prenom,:confirm_password,:email,:date_naissance, :adresse, :tel, :cp, :ville, :role_id)');
+            $req = $pdo->prepare('INSERT INTO Users (user_nom,user_prenom, user_mdp, user_email, user_naissance, user_adresse, user_tel, user_cp, user_ville, role_id) 
+                        VALUES(:nom,:prenom,:confirm_password,:email,:date_naissance, :adresse, :tel, :cp, :ville, :role_id)');
             /* methode execute() de PDO pour faire correspondre les valeurs saisies
                         avec les les parametres de la table*/
             $executeIsOK = $req->execute(array(
                 ':prenom' => $_POST['user_prenom'],
                 ':nom' => $_POST['user_nom'],
-                ':login1' => $login1,
                 ':confirm_password' => $pass_hache,
                 ':email' => $_POST['user_email'],
                 ':date_naissance' => $_POST['user_naissance'],
@@ -109,9 +108,9 @@ if ($_SESSION['auth']->role_role == 'member') {
                 ':role_id' => $_POST['role_id']
             ));
             if ($executeIsOK) {
-                header("refresh:3;url=membres.php");
+                //header("refresh:3;url=membres.php");
                 echo ("<div class='txt-center'><div class='success-msg'><i class='fa fa-check'></i> L'utilisateur a bien été ajouté</div></div>");
-                echo 'Les données vont être rafraichies dans 3 secondes. Sinon cliquez <a href="membres.php">ici</a>.';
+                echo 'Cliquez <a href="membres.php">ici</a> pour revenir à la page membre.';
             } else {
                 echo ("<div class='txt-center'><div class='error-msg'><i class='fa fa-times-circle'></i> L'ajout a échoué</div></div>");
             }

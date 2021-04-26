@@ -1,6 +1,7 @@
 <?php
 require('inc/header.php');
 ?>
+
 <body>
     <div class="txt-center">
         <div class="content1col">
@@ -8,7 +9,7 @@ require('inc/header.php');
             <!--Formulaire de connexion----------->
             <form class="form form--m center" id="connexion" name="connexion" action="" method="POST">
                 <h3>Login</h3>
-                <input name="login_ad" type="text" value="" placeholder="Votre login" required />
+                <input name="user_email" type="text" value="" placeholder="Votre email" required />
                 <h3>Mot de passe</h3>
                 <input name="password" type="password" value="" placeholder="Votre mot de passe" required />
                 <br>
@@ -17,11 +18,11 @@ require('inc/header.php');
         </div>
         <?php
         //Vérification du Login et mot de passe
-        if (isset($_POST['login_ad']) and isset($_POST['password'])) {
-            if (!empty($_POST['login_ad']) and !empty($_POST['password'])) { //si les champs ne sont pas vides, alors la requête préparée est exécutée. 
-                $login = $_POST['login_ad'];
-                $req = $pdo->prepare('SELECT user_id,user_login,user_email,user_mdp FROM Users WHERE user_login =:login_ad');
-                $req->bindValue('login_ad', $login, PDO::PARAM_STR);
+        if (isset($_POST['user_email']) and isset($_POST['password'])) {
+            if (!empty($_POST['user_email']) and !empty($_POST['password'])) { //si les champs ne sont pas vides, alors la requête préparée est exécutée. 
+                $_POST['user_email'];
+                $req = $pdo->prepare('SELECT user_id,user_email,user_mdp FROM Users WHERE user_email =:user_email');
+                $req->bindValue('user_email', $_POST['user_email'], PDO::PARAM_STR);
                 $req->execute();
                 $resultat = $req->fetch();
 
@@ -30,11 +31,11 @@ require('inc/header.php');
                     die();
                 } else {
                     //Récupération des informations de session de l'utilisateur
-                    $query = "SELECT user_id, user_login, user_prenom, user_nom, user_email, user_naissance,user_adresse,user_tel,user_ville,user_cp, role_nom, role_role FROM users 
+                    $query = "SELECT user_id,  user_prenom, user_nom, user_email, user_naissance,user_adresse,user_tel,user_ville,user_cp, role_nom, role_role FROM users 
             LEFT JOIN roles ON roles_id=role_id
-            WHERE user_login=:login";
+            WHERE user_email=:login";
                     $prepare = $pdo->prepare($query);
-                    $prepare->bindValue('login', $login, PDO::PARAM_STR);
+                    $prepare->bindValue('login', $_POST['user_email'], PDO::PARAM_STR);
                     $prepare->execute();
                     $user = $prepare->fetch();
                     $_SESSION['auth'] = $user;

@@ -17,14 +17,16 @@ if (isset($_GET['id']) and !empty($_GET['id'])) {
 		die("<div class='txt-center'><div class='error-msg'><i class='fa fa-times-circle'></i> Cet article n'existe pas</div></div>");
 	}
 } else {
-	die('Erreur');
+	die("<div class='txt-center'><div class='error-msg'><i class='fa fa-times-circle'></i> Erreur");
 }
 ?>
 <body>
 
 	<div class="content1col"></div>
 	<div class="txt-center">
-	<!--<p>Publié le : //mettre balise php $article->date_time_publication </p>-->
+	<p><i class="fa fa-user" aria-hidden="true" style="color: #004279;"></i> Publié par: <?= $article->auteur; ?>
+	<br><i class="fa fa-calendar"></i> Publié le: <?= $date_publication = strftime('%d/%m/%Y', strtotime($article->date_time_publication)) ?>
+	</p>
 	<h1><?= $titre ?></h1>
 	<p>
 		<?php

@@ -360,7 +360,7 @@ require('db.php'); //Appel de la DB
     <?php endif ?>
 
     <!-------Condition CLUB.PHP && Form_modif_club.php && FORM_ADD_CLUB.php----->
-    <?php if ($_SERVER['PHP_SELF'] == "/club2021/club/club.php" or $_SERVER['PHP_SELF'] == "/club2021/club/form_modif_club.php" or $_SERVER['PHP_SELF'] == "/club2021/club/form_add_club.php") : ?>
+    <?php if ($_SERVER['PHP_SELF'] == "/club2021/club/club.php" or $_SERVER['PHP_SELF'] == "/club2021/club/form_modif_club.php" or $_SERVER['PHP_SELF'] == "/club2021/club/form_add_club.php" or $_SERVER['PHP_SELF'] == "/club2021/club/form_suppr_club.php") : ?>
         <!DOCTYPE html><!-- Doctype HTML 5-->
         <html lang="fr">
 
@@ -453,7 +453,7 @@ require('db.php'); //Appel de la DB
 
 
     <!-------Condition ligues.php----->
-    <?php if ($_SERVER['PHP_SELF'] == "/club2021/ligue/ligue.php" or $_SERVER['PHP_SELF'] == "/club2021/ligue/form_add_ligue.php" or $_SERVER['PHP_SELF'] == "/club2021/ligue/form_modif_ligue.php" or $_SERVER['PHP_SELF'] == "/club2021/membres/form_suppr_ligue.php") : ?>
+    <?php if ($_SERVER['PHP_SELF'] == "/club2021/ligue/ligue.php" or $_SERVER['PHP_SELF'] == "/club2021/ligue/form_add_ligue.php" or $_SERVER['PHP_SELF'] == "/club2021/ligue/form_modif_ligue.php" or $_SERVER['PHP_SELF'] == "/club2021/ligue/form_suppr_ligue.php") : ?>
         <!DOCTYPE html><!-- Doctype HTML 5-->
         <html lang="fr">
 

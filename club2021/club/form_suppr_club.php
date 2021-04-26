@@ -20,5 +20,5 @@ if ($executeIsOK) {
    $message = "<div class='txt-center'><div class='error-msg'><i class='fa fa-times-circle'></i> La suppression a échouée</div></div>";
 }
 echo $message;
-//header("refresh:3;url=club.php");
-header('Location:club.php');
+header("refresh:3;url=club.php");
+//header('Location:club.php');

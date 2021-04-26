@@ -26,8 +26,8 @@ if (isset($_POST['article_titre'], $_POST['article_contenu'])) {
 		$article_titre = htmlspecialchars($_POST['article_titre']);
 		$article_contenu = htmlspecialchars($_POST['article_contenu']);
 		if ($mode_edition == 0) {
-			$ins = $pdo->prepare('INSERT INTO articles (titre, contenu, date_time_publication) VALUES (?, ?, NOW())');
-			$ins->execute(array($article_titre, $article_contenu));
+			$ins = $pdo->prepare('INSERT INTO articles (titre, contenu, date_time_publication,auteur) VALUES (?, ?, NOW(),?)');
+			$ins->execute(array($article_titre, $article_contenu,$_SESSION['auth']->user_prenom.' '.$_SESSION['auth']->user_nom));
 			$message_article = "<div class='success-msg'><i class='fa fa-check'></i> Votre article a bien été posté</div>";
 		} else {
 			$update = $pdo->prepare('UPDATE articles SET titre = ?, contenu = ?, date_time_edition = NOW() WHERE id = ?');

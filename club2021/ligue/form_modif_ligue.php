@@ -67,7 +67,7 @@ $contact = $req->fetch(PDO::FETCH_ASSOC);
                 $executeIsOK = $req->execute();
                 if ($executeIsOK) {
                     echo ("<div class='txt-center'><div class='success-msg'><i class='fa fa-check'></i> Le ligue a bien été modifié</div></div>");
-                    echo 'Les données vont être rafraichies dans 3 secondes. Sinon cliquez <a href="ligue.php">ici</a>.';
+                    echo 'Cliquez <a href="ligue.php">ici</a> pour revenir à la page ligue.';
                 } else {
                     echo ("<div class='txt-center'><div class='error-msg'><i class='fa fa-times-circle'></i> La modification a échouée</div></div>");
                 }

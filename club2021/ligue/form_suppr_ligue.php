@@ -20,4 +20,4 @@ $message="<div class='txt-center'><div class='error-msg'><i class='fa fa-times-c
 }
 echo $message;
 //header("refresh:3;url=club.php");
-header('Location:ligue.php');
+header("refresh:3;url=ligue.php");

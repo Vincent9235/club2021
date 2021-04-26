@@ -17,21 +17,6 @@ require('inc/header.php');
             <input id="tel" name="tel" type="text" size="" value="" placeholder="Votre téléphone" required maxlength="10" />
             <br>
 
-            <!--Choix du sport---->
-            <h3>Votre sport</h3>
-            <select name="sport" required>
-                <OPTION value="" selected disabled hidden>Choisir votre sport</OPTION>
-                <OPTION value="Foot">Foot</OPTION>
-                <OPTION value="Tennis">Tennis</OPTION>
-                <OPTION value="Handball">Handball</OPTION>
-                <OPTION value="Basket">Basket</OPTION>
-                <OPTION value="Volley">Volley</OPTION>
-                <OPTION value="Badminton">Badminton</OPTION>
-                <OPTION value="Natation">Natation</OPTION>
-                <OPTION value="Cyclisme">Cyclisme</OPTION>
-                <OPTION value="Athletisme">Athlétisme</OPTION>
-            </select>
-
             <!--Choix du club dans une liste déroulante dynamique------>
             <select name="club" required>
             <OPTION value="" selected disabled hidden>Choisir votre club</OPTION>

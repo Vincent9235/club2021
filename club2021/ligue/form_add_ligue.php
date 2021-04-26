@@ -60,6 +60,7 @@ if ($_SESSION['auth']->role_role == 'member') {
                 ':ligue_email' => $_POST['ligue_email']
             ));
             echo ("<div class='success-msg'> La ligue a bien été ajoutée</div>");
+            echo 'Cliquez <a href="ligue.php">ici</a> pour revenir à la page ligue.';
         }
         ?>
     </form>

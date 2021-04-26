@@ -2,12 +2,10 @@
 require('inc/header.php');
 ?>
 <body>
-    <h2>Mot de passe oublié</h2>
-    <form method="post">
+    <h2 class="h1">Mot de passe oublié</h2>
+    <form class="form form--m center" method="post">
         <input type="email" name="email" value="" placeholder="Entrer votre email" />
-        <input type="submit" name="submit_email" value="Envoyer un mot de passe aléatoire" />
-    </form>
-</body>
+        <input type="submit" name="submit_email" value="Envoyer un nouveau mot de passe" />
 <?php
 if (isset($_POST['email']) and isset($_POST['submit_email'])) {
     //On vérifie que l'email saisi existe bien. 
@@ -23,13 +21,14 @@ if (isset($_POST['email']) and isset($_POST['submit_email'])) {
             $sql = "UPDATE Users SET user_mdp = ? WHERE user_email = ?";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$hashedPassword, $_POST['email']]);
-            echo "<div class='success-msg'><i class='fa fa-check'></i>Mail envoyé</div>";
+            echo "<div class='success-msg'><i class='fa fa-check'></i> Mail envoyé</div>";
         }
     } else {
-        echo "<div class='error-msg'><i class='fa fa-times-circle'></i>Cet email n'est associé à aucun compte</div>";
+        echo "<div class='error-msg'><i class='fa fa-times-circle'></i> Cet email n'est associé à aucun compte</div>";
         die();
     }
 }
 ?>
-
+</form>
+</body>
 </html>

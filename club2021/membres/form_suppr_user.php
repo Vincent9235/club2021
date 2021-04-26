@@ -14,10 +14,12 @@ $req=$pdo->prepare('DELETE FROM users WHERE user_id=:num');
 $req->bindValue(':num', $_GET['numID'], PDO::PARAM_INT);
 $executeIsOK = $req->execute();
 if($executeIsOK){
-$message="<div class='container'><div class='txt-center'><div class='success-msg'><i class='fa fa-check'></i> L'utilisateur a bien été supprimé</div></div></div>";
+$message="<strong><div class='container'><div class='txt-center'><div class='success-msg'><i class='fa fa-check'></i> L'utilisateur a bien été supprimé</div></div></div>";
 }
 else{
 $message="<div class='container'><div class='txt-center'><div class='error-msg'><i class='fa fa-times-circle'></i> La suppression a échouée</div></div></div>";
 }
+header("refresh:3;url=membres.php");
 echo $message;
+echo "<div class='txt-center'>Cliquez <a href='membres.php'>ici</a> pour revenir à la page membre.</div>";
 ?>
