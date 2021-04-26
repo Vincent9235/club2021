@@ -1,22 +1,30 @@
 <?php
 require('inc/header.php');
-//Si l'utilisateur est connecté alors il ne peut pas accéder au formulaire d'inscription
+//Si l'utilisateur est connecté alors, il ne peut pas accéder au formulaire d'inscription
 if (isset($_SESSION['auth'])) {
     header('Location:article/actualite.php');
     exit;
 }
 ?>
-<h1>Inscription</h1>
+<div class="txt-center">
+<h1 class="h1">Inscription</h1>
+<div class="content1col"></div>
 <!--Formulaire d'inscription----------->
-<form id="inscription" name="inscription" action="" method="POST">
+<form class="form form--m center" id="inscription" name="inscription" action="" method="POST">
     <h3>Nom</h3>
-    <input name="nom" type="text" size="" value="" placeholder="Votre nom" required maxlength="50" />
+    <input name="nom" type="text" size="" value="<?php if (isset($_POST['nom'])) {
+                                                        echo $_POST['nom'];
+                                                    } ?>" placeholder="Votre nom" required maxlength="50" />
     <h3>Prénom</h3>
-    <input name="prenom" type="text" size="" value="" placeholder="Votre prénom" required maxlength="50" />
+    <input name="prenom" type="text" size="" value="<?php if (isset($_POST['prenom'])) {
+                                                                                echo $_POST['prenom'];
+                                                                            } ?>" placeholder="Votre prénom" required maxlength="50" />
     <h3>Email</h3>
-    <input name="email" type="email" value="@" placeholder="Votre email" required />
+    <input name="email" type="email" value="<?php if (isset($_POST['email'])) {
+                                                                                echo $_POST['email'];
+                                                                            } ?>" placeholder="Votre email" required />
     <h3>Date de naissance</h3>
-    <input id="datetimepicker" name="date_naissance" type="date" value="" placeholder="Votre date de naissance" required />
+    <input name="date_naissance" type="date" value="<?php if (isset($_POST['date_naissance'])) { echo $_POST['date_naissance']; } ?>" placeholder="Votre date de naissance" required />
     <br>
     <h3>Mot de passe</h3>
     <input name="password" type="password" value="" placeholder="Votre mot de passe" required maxlength="50" />
@@ -39,7 +47,7 @@ if (isset($_POST['inscription']) && isset($_POST['nom']) && isset($_POST['prenom
         $pass_hache = password_hash($_POST['password'], PASSWORD_DEFAULT);
         //comparaison du mot de passe et de la confirmation
         if ($_POST['password'] <> $_POST['confirm_password']) {
-            echo ("<br>Le mot de passe saisi et sa confirmation, ne correspondent pas");
+            echo ('<div class="error-msg">Le mot de passe saisi et sa confirmation, ne correspondent pas</div>');
         } else {
             //Création du login de l'adhérent avec les informations postées précedemment
             if (isset($_POST['prenom'])) {
@@ -56,7 +64,7 @@ if (isset($_POST['inscription']) && isset($_POST['nom']) && isset($_POST['prenom
                     //Le script est exécuté
                 } else {
                     //Erreur dans la saisie de l'email fin du script
-                    echo ("<strong>Le format de l'adresse mail saisi est invalide");
+                    echo ("<div class='error-msg><strong>Le format de l'adresse mail saisi est invalide</div>");
                     exit();
                 }
 
@@ -66,7 +74,7 @@ if (isset($_POST['inscription']) && isset($_POST['nom']) && isset($_POST['prenom
                 $req->execute([$_POST['email']]);
                 $verif_email = $req->fetch();
                 if ($verif_email) {
-                    echo ("<strong>Cet email est déjà utilisé pour un autre compte.");
+                    echo ("<div class='error-msg><strong>Cet email est déjà utilisé pour un autre compte.</strong></div>");
                     die();
                 }
                 //Création de la date à insérer afin de laisser le format FR dans le datetimepicker
@@ -94,13 +102,14 @@ if (isset($_POST['inscription']) && isset($_POST['nom']) && isset($_POST['prenom
                 $prepare->execute();
                 $user = $prepare->fetch();
                 $_SESSION['auth'] = $user;
-                echo ("Vous allez être redigiré afin de compléter vos informations<strong><br>Votre login est: " . $login1);
+                echo ("<div class='success-msg>Vous allez être redigiré afin de compléter vos informations<strong><br>Votre login est: " . $login1 . "</div>");
                 header("Location: remplir_info.php"); //redirection vers une page permettant à l'utilisateur de renseigner davantage d'informations sur lui.
             }
         } //Fin du if(isset($_POST['inscription']))
     } //Fin du if(isset($_POST['email]))
 }
 ?>
+</div>
 </body>
 
 <!--DATETIMEPICKER
