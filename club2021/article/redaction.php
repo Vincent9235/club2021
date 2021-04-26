@@ -6,7 +6,7 @@ if (!isset($_SESSION['auth'])){
 }
 //Si l'utilisateur est un membre, redirection à la page actualite.php
 if ($_SESSION['auth']->role_role == 'member') {
-    header('Location:article/actualite.php');
+    header('Location:actualite.php');exit;
 }
 $mode_edition = 0;
 if (isset($_GET['edit']) and !empty($_GET['edit'])) {
@@ -17,7 +17,7 @@ if (isset($_GET['edit']) and !empty($_GET['edit'])) {
 	if ($edit_article->rowCount() == 1) {
 		$edit_article = $edit_article->fetch();
 	} else {
-		die('Erreur : l\'article n\'existe pas...');
+		die("<div class='error-msg'><i class='fa fa-times-circle'></i> Erreur: L'article n'existe pas...</div>");
 	}
 }
 if (isset($_POST['article_titre'], $_POST['article_contenu'])) {
@@ -28,15 +28,15 @@ if (isset($_POST['article_titre'], $_POST['article_contenu'])) {
 		if ($mode_edition == 0) {
 			$ins = $pdo->prepare('INSERT INTO articles (titre, contenu, date_time_publication) VALUES (?, ?, NOW())');
 			$ins->execute(array($article_titre, $article_contenu));
-			$message = 'Votre article a bien été posté';
+			$message_article = "<div class='success-msg'><i class='fa fa-check'></i> Votre article a bien été posté</div>";
 		} else {
 			$update = $pdo->prepare('UPDATE articles SET titre = ?, contenu = ?, date_time_edition = NOW() WHERE id = ?');
 			$update->execute(array($article_titre, $article_contenu, $edit_id));
 			header('Location: article.php?id=' . $edit_id);
-			$message = 'Votre article a bien été mis à jour !';
+			$message_article = "<div class='success-msg><i class='fa fa-check'></i> Votre article a bien été mis à jour </div>";
 		}
 	} else {
-		$message = 'Veuillez remplir tous les champs';
+		$message_article = "<div class='error-msg'><i class='fa fa-times-circle'></i><strong> Veuillez remplir tous les champs</div>";
 	}
 }
 ?>
@@ -49,8 +49,8 @@ if (isset($_POST['article_titre'], $_POST['article_contenu'])) {
 		<input type="submit" value="Envoyer l'article" />
 	</form>
 	<br />
-	<?php if (isset($message)) {
-		echo $message;
+	<?php if (isset($message_article)) {
+		echo $message_article;
 	} ?>
 
 
@@ -73,5 +73,4 @@ if (isset($_POST['article_titre'], $_POST['article_contenu'])) {
 		})
 	</script>
 </body>
-
 </html>

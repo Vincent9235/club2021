@@ -1,64 +1,67 @@
 <?php
 require('../inc/header.php');
-//Si l'utilisateur n'est pas connecté, redirection à la page index.php
+//Si l'utilisateur n'est pas connecté, redirection à la page connexion.php
 if (!isset($_SESSION['auth'])) {
     header('Location:../connexion.php');
-    exit;
+    exit('Vous n\'êtes pas autorisé à accéder à cette page');
 }
 ?>
-
 <body>
-    <h1>Les dernières actualités</h1>
-    <!--Recherche d'articles--->
-    <form method="GET">
-        <input type="search" name="q" placeholder="Rechercher un article" />
-        <input type="submit" value="Valider" />
-    </form>
-    <?php
-    $articles = $pdo->query('SELECT id,titre FROM articles ORDER BY id DESC');
-    if (isset($_GET['q']) and !empty($_GET['q'])) {
-        $q = htmlspecialchars($_GET['q']);
-        $articles = $pdo->query('SELECT id,titre FROM articles WHERE titre LIKE "%' . $q . '%" ORDER BY id DESC');
-        if ($articles->rowCount() == 0) {
-            $articles = $pdo->query('SELECT id,titre FROM articles WHERE CONCAT(titre, contenu) LIKE "%' . $q . '%" ORDER BY id DESC');
+    <div class="container">
+        <div class="txt-center">
+            <h1 class="h1-actu">Les dernières actualités</h1>
+            <!--Recherche d'articles--->
+            <?php if (isset($_SESSION['auth']) && $_SESSION['auth']->role_role == 'admin' or $_SESSION['auth']->role_role == 'responsable') : ?>
+                <a class="btn--default" href="redaction.php">
+                    <span class="icon"><i class="fa fa-plus-circle" aria-hidden="true"></i></span>
+                    Ecrire un nouvel article</a>
+            <?php endif ?>
+            <form class="form form--m center" method="GET">
+                <input type="search" name="q" placeholder="Rechercher un article" value="<?= isset($_GET['q'])?$_GET['q']:null ?>" />
+                <input type="submit" value="Valider" />
+            </form>
+        
+        <div class="content3col"></div>
+        <?php
+        $articles = $pdo->query('SELECT id,titre FROM articles ORDER BY id DESC');
+        if (isset($_GET['q']) and !empty($_GET['q'])) {
+            $q = htmlspecialchars($_GET['q']);
+            $articles = $pdo->query('SELECT id,titre FROM articles WHERE titre LIKE "%' . $q . '%" ORDER BY id DESC');
+            if ($articles->rowCount() == 0) {
+                $articles = $pdo->query('SELECT id,titre FROM articles WHERE CONCAT(titre, contenu) LIKE "%' . $q . '%" ORDER BY id DESC');
+            }
         }
-    }
-    ?>
-    <?php if ($articles->rowCount() > 0) { ?>
-        <ul>
-            <?php while ($a = $articles->fetch()) { ?>
-                <li><a href="article.php?id=<?= $a->id ?>"><?= $a->titre ?></a></li>
-
+        ?>
+        <?php if ($articles->rowCount() > 0) { ?>
+            <div class="card-content">
+            
+                <?php while ($a = $articles->fetch()) { ?>
+                    <h1 class="card-header"><a class="a-article" href="article.php?id=<?= $a->id ?>"><?= $a->titre ?></a></h1>
+                        <?php if ($_SESSION['auth']->role_role == 'admin') : ?>
+                             <a class="btn--default btn-mini" href="redaction.php?edit=<?= $a->id ?>"><i class="fa fa-pencil-square-o" aria-hidden="true" name="update"></i></a>  <a class="btn--delete btn-mini delete-confirm"href="supprimer.php?id=<?= $a->id ?>" onclick="return confirm('Souhaitez vous supprimer cet article ?')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                <?php endif ?>
             <?php } ?>
-        </ul>
-    <?php } else { ?>
-        Aucun résultat pour la recherche: <?= $q ?>
-    <?php } ?>
-    <!--Fin de la recherche---->
 
-    <?php
-    $articles = $pdo->query('SELECT * FROM articles ORDER BY date_time_publication DESC'); //Requête pour afficher les articles
-    ?>
-    <h4>Articles à la une</h4>
-    <ul>
-        <!--Consultation des articles--->
-        <?php while ($a = $articles->fetch()) { ?>
-            <li><a href="article.php?id=<?= $a->id ?>"><?= $a->titre ?></a>
-                <?php if ($_SESSION['auth']->role_role == 'admin') : ?>
-                    | <a href="redaction.php?edit=<?= $a->id ?>">Modifier</a> | <a href="supprimer.php?id=<?= $a->id ?>" onclick="return confirm('Souhaitez vous supprimer cet article?')">Supprimer</a></li>
-        <?php endif ?>
-    <?php } ?>
-    </ul>
-    
-    <strong><a href="../profil.php">Mon profil </a></strong>
-    <?php
-    //Informations de l'utilisateur    
-    $req = $pdo->prepare("SELECT * FROM Users WHERE user_id = ?");
-    $req->execute(array($_SESSION['auth']->user_id));
-    $user = $req->fetch();
-    echo ("<br><strong>Bonjour " . $_SESSION['auth']->user_login . " <br>Vous êtes : " . $_SESSION['auth']->user_prenom . " " . $_SESSION['auth']->user_nom."</strong>");
-    var_dump($_SESSION['auth']);
-    ?>
+            </div>
+        <?php } else { ?>
+            <div class="error-msg"><i class='fa fa-times-circle'></i> Aucun résultat pour la recherche: <strong><?= $q ?></strong></div>
+        <?php } ?>
+        <!--Fin de la recherche---->
+
+        <?php
+        $articles = $pdo->query('SELECT * FROM articles ORDER BY date_time_publication DESC'); //Requête pour afficher les articles
+        ?>
+        <?php
+        //Informations de l'utilisateur    
+        $req = $pdo->prepare("SELECT * FROM Users WHERE user_id = ?");
+        $req->execute(array($_SESSION['auth']->user_id));
+        $user = $req->fetch();
+        //var_dump($_SESSION['auth']);
+        //Formater date de naissance
+        /*$date_naissance = strftime('%d/%m/%Y', strtotime($_SESSION['auth']->user_naissance));
+    echo ($date_naissance);*/
+        ?>
+        </div>
+    </div>
 </body>
-
 </html>
