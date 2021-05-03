@@ -45,7 +45,7 @@ $contact = $req->fetch(PDO::FETCH_ASSOC);
                 </div>
                 <div>
                     <label class="size-s" for="club_email">Email du club</label>
-                    <input id="club_email" name="club_email" type="text" placeholder="Email du club" value="<?= $contact['club_email']; ?>" required>
+                    <input id="club_email" name="club_email" type="email" placeholder="Email du club" value="<?= $contact['club_email']; ?>" required>
                 </div>
             </fieldset>
 

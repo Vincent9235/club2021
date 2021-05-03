@@ -17,7 +17,6 @@ if ($_SESSION['auth']->role_role == 'member') {
 <span class="icon"><i class="fa fa-plus-circle" aria-hidden="true"></i></span>
 Ajouter un membre</a>
 </div>
-<div class="content3col"></div>
 <!--Formulaire de recherche--->
 <form class="form form--m center" method="GET">
    <input type="search" name="q" placeholder="Recherche par nom" value="<?= isset($_GET['q'])?$_GET['q']:null ?>"/>
@@ -92,7 +91,7 @@ if(!empty($_GET['q'])){
 
 </table>
 <?php if($pages>1 && $page>1):?>
-      <a  href="?<?= withParam("p", $page -1) ?>" class="btn btn--custom">Page précédente</a>
+      <a  href="?<?= withParam("p", $page - 1) ?>" class="btn btn--custom">Page précédente</a>
       <?php endif ?>
    <?php if($pages>1 && $page < $pages): ?>
       <a  href="?<?= withParam("p",$page + 1) ?>" class="btn btn--custom">Page suivante</a>

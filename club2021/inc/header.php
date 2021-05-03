@@ -145,7 +145,7 @@ require('db.php'); //Appel de la DB
                     <a href="../profil.php"><i class="fa fa-user" aria-hidden="true"></i>Mon profil</a>
                 <?php endif ?>
                 <?php if (isset($_SESSION['auth']) && $_SESSION['auth']->role_role == 'admin' or $_SESSION['auth']->role_role == 'responsable') : ?>
-                    <a href="admin/page_admin.php"><i class="fa fa-cog" aria-hidden="true"></i>Administration</a>
+                    <a href="../admin/page_admin.php"><i class="fa fa-cog" aria-hidden="true"></i>Administration</a>
                 <?php endif ?>
             </div>
         </header>

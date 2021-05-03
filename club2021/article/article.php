@@ -27,6 +27,7 @@ if (isset($_GET['id']) and !empty($_GET['id'])) {
 	<p><i class="fa fa-user" aria-hidden="true" style="color: #004279;"></i> Publié par: <?= $article->auteur; ?>
 	<br><i class="fa fa-calendar"></i> Publié le: <?= $date_publication = strftime('%d/%m/%Y', strtotime($article->date_time_publication)) ?>
 	</p>
+	<div class="content1col"></div>
 	<h1><?= $titre ?></h1>
 	<p>
 		<?php
