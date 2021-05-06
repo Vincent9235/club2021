@@ -9,7 +9,7 @@ require('inc/header.php');
             <!--Formulaire de connexion----------->
             <form class="form form--m center" id="connexion" name="connexion" action="" method="POST">
                 <h3>Login</h3>
-                <input name="user_email" type="text" value="" placeholder="Votre email" required />
+                <input name="user_email" type="email" value="" placeholder="Votre email" required />
                 <h3>Mot de passe</h3>
                 <input name="password" type="password" value="" placeholder="Votre mot de passe" required />
                 <br>

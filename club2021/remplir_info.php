@@ -44,7 +44,7 @@ require('inc/header.php');
             $req->bindValue(':user_id', $_SESSION['auth']->user_id, PDO::PARAM_STR);
             $req->execute();
 
-            if (isset($_POST['club']) && ($_POST['sport'])) {
+            if (isset($_POST['club'])) {
 
                 $req = $pdo->prepare('INSERT INTO clubs (club_nom) 
         VALUES(:club)');
@@ -54,7 +54,7 @@ require('inc/header.php');
                     ':club' => $_POST['club']
                 ));
             }
-            echo ("<div class='success-msg'><i class='fa fa-check'></i> Votre inscription a bien été prise en compte. Votre login est: <strong>" . $_SESSION['auth']->user_login . "</div>");
+            echo ("<div class='success-msg'><i class='fa fa-check'></i> Votre inscription a bien été prise en compte. </div>");
         }
         ?>
         <?php if (isset($_POST['confirm_inscription'])) : ?>

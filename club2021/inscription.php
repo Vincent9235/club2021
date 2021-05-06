@@ -81,24 +81,23 @@ if (isset($_POST['inscription']) && isset($_POST['nom']) && isset($_POST['prenom
                 //$date_naissance = strftime('%Y/%m/%d', strtotime($_POST['date_naissance']));
                 //Envoi des informations dans la bdd
 
-                $req = $pdo->prepare('INSERT INTO Users (user_login, user_nom,user_prenom, user_mdp, user_email, user_naissance,role_id) 
-   VALUES(:login1,:nom,:prenom,:confirm_password,:email,:date_naissance,:role_id)');
+                $req = $pdo->prepare('INSERT INTO Users (user_nom,user_prenom, user_mdp, user_email, user_naissance,role_id) 
+   VALUES(:nom,:prenom,:confirm_password,:email,:date_naissance,:role_id)');
                 /* methode execute() de PDO pour faire correspondre les valeurs saisies
    avec les les parametres de la table*/
                 $req->execute(array(
                     ':prenom' => $_POST['prenom'],
                     ':nom' => $_POST['nom'],
-                    ':login1' => $login1,
                     ':confirm_password' => $pass_hache,
                     ':email' => $email,
                     ':date_naissance' => $_POST['date_naissance'], //$_POST['date_naissance'],
                     ':role_id' => "2"
                 ));
-                $query = "SELECT user_id, user_login, user_prenom, user_nom, user_email, user_naissance,user_adresse,user_tel,user_ville,user_cp, role_nom, role_role FROM users 
+                $query = "SELECT user_id,  user_prenom, user_nom, user_email, user_naissance,user_adresse,user_tel,user_ville,user_cp, role_nom, role_role FROM users 
                 LEFT JOIN roles ON roles_id=role_id
-                WHERE user_login=:login";
+                WHERE user_email=:email";
                 $prepare = $pdo->prepare($query);
-                $prepare->bindValue('login', $login1, PDO::PARAM_STR);
+                $prepare->bindValue('email', $email, PDO::PARAM_STR);
                 $prepare->execute();
                 $user = $prepare->fetch();
                 $_SESSION['auth'] = $user;
