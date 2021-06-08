@@ -97,7 +97,7 @@ h6, .h6 { font-size: 0.75rem; }
   color:#ffffff;
   text-align: center;
   border-radius: 10px;
-  padding: 3px;
+  padding: 6px;
   margin-left: auto;
   margin-right: auto;
   width: 50%
@@ -107,7 +107,7 @@ h6, .h6 { font-size: 0.75rem; }
   color:#ffffff;
   text-align: center;
   border-radius: 10px;
-  padding: 3px;
+  padding: 6px;
   margin-left: auto;
   margin-right: auto;
   width: 50%
@@ -116,6 +116,7 @@ h6, .h6 { font-size: 0.75rem; }
 .content1col{ width: 100%; padding: 10px; }
 .content2col { width: 75%; padding: 10px; margin: 10px; }
 .content3col { width: 55%; padding: 10px; }
+.content4col { width:100%; padding: 5px;}
 /* :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
  * 05- Liens, Buttons et icones
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
@@ -128,6 +129,10 @@ a:hover,
 a:active { color: #ee5f2a; text-decoration: underline; }
 /* icons */
 .icon { font-size: 14px; color:inherit; }
+.a-profil{ color: #23527c; background-color: transparent; cursor: pointer; font-size: 19px; }
+.a-profil:hover,.a-profil:focus {     color: #23527c;
+  text-decoration: underline;
+}
 
 
 /* :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

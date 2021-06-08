@@ -94,8 +94,11 @@ require('db.php'); //Appel de la DB
                     <a href="actualite.php"><i class="fa fa-home " aria-hidden="true"></i>Actualités</a>
                     <a href="../profil.php"><i class="fa fa-user" aria-hidden="true"></i>Mon profil</a>
                 <?php endif ?>
-                <?php if (isset($_SESSION['auth']) && $_SESSION['auth']->role_role == 'admin' or $_SESSION['auth']->role_role == 'responsable') : ?>
+                <?php if (isset($_SESSION['auth']) && @$_SESSION['auth']->role_role == 'admin' or @$_SESSION['auth']->role_role == 'responsable') : ?>
                     <a href="../admin/page_admin.php"><i class="fa fa-cog" aria-hidden="true"></i>Administration</a>
+                <?php endif ?>
+                <?php if (isset($_SESSION['auth']) && @$_SESSION['auth']->role_role == 'member') : ?>
+                    <a href="../admin/page_admin.php"><i class="fa fa-info" aria-hidden="true"></i> Informations</a>
                 <?php endif ?>
             </div>
         </header>
@@ -144,7 +147,7 @@ require('db.php'); //Appel de la DB
                     <a href="actualite.php"><i class="fa fa-home " aria-hidden="true"></i>Actualités</a>
                     <a href="../profil.php"><i class="fa fa-user" aria-hidden="true"></i>Mon profil</a>
                 <?php endif ?>
-                <?php if (isset($_SESSION['auth']) && $_SESSION['auth']->role_role == 'admin' or $_SESSION['auth']->role_role == 'responsable') : ?>
+                <?php if (isset($_SESSION['auth']) && @$_SESSION['auth']->role_role == 'admin' or @$_SESSION['auth']->role_role == 'responsable') : ?>
                     <a href="../admin/page_admin.php"><i class="fa fa-cog" aria-hidden="true"></i>Administration</a>
                 <?php endif ?>
             </div>
@@ -166,7 +169,7 @@ require('db.php'); //Appel de la DB
             <meta name="description" content="Club 2021">
             <title>Mon profil</title>
             <link type="text/css" rel="stylesheet" href="css/style.css" media="screen" />
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+            
             <!---CSS Icons--->
             <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
         </head>
@@ -193,8 +196,11 @@ require('db.php'); //Appel de la DB
                     <a href="article/actualite.php"><i class="fa fa-home " aria-hidden="true"></i>Actualités</a>
                     <a href="profil.php"><i class="fa fa-user" aria-hidden="true"></i>Mon profil</a>
                 <?php endif ?>
-                <?php if (isset($_SESSION['auth']) && $_SESSION['auth']->role_role == 'admin' or $_SESSION['auth']->role_role == 'responsable') : ?>
+                <?php if (isset($_SESSION['auth']) && @$_SESSION['auth']->role_role == 'admin' or @$_SESSION['auth']->role_role == 'responsable') : ?>
                     <a href="admin/page_admin.php"><i class="fa fa-cog" aria-hidden="true"></i>Administration</a>
+                <?php endif ?>
+                <?php if (isset($_SESSION['auth']) && @$_SESSION['auth']->role_role == 'member') : ?>
+                    <a href="admin/page_admin.php"><i class="fa fa-info" aria-hidden="true"></i> Informations</a>
                 <?php endif ?>
             </div>
         </header>
@@ -215,7 +221,7 @@ require('db.php'); //Appel de la DB
             <meta name="description" content="Club 2021">
             <title>Modification du profil</title>
             <link type="text/css" rel="stylesheet" href="css/style.css" media="screen" />
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+            
             <!---CSS Icons--->
             <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
         </head>
@@ -241,8 +247,11 @@ require('db.php'); //Appel de la DB
                     <a href="article/actualite.php"><i class="fa fa-home " aria-hidden="true"></i>Actualités</a>
                     <a href="profil.php"><i class="fa fa-user" aria-hidden="true"></i>Mon profil</a>
                 <?php endif ?>
-                <?php if (isset($_SESSION['auth']) && $_SESSION['auth']->role_role == 'admin' or $_SESSION['auth']->role_role == 'responsable') : ?>
+                <?php if (isset($_SESSION['auth']) && @$_SESSION['auth']->role_role == 'admin' or @$_SESSION['auth']->role_role == 'responsable') : ?>
                     <a href="admin/page_admin.php"><i class="fa fa-cog" aria-hidden="true"></i>Administration</a>
+                <?php endif ?>
+                <?php if (isset($_SESSION['auth']) && @$_SESSION['auth']->role_role == 'member') : ?>
+                    <a href="admin/page_admin.php"><i class="fa fa-info" aria-hidden="true"></i> Informations</a>
                 <?php endif ?>
             </div>
         </header>
@@ -352,8 +361,11 @@ require('db.php'); //Appel de la DB
                     <a href="../article/actualite.php"><i class="fa fa-home " aria-hidden="true"></i>Actualités</a>
                     <a href="../profil.php"><i class="fa fa-user" aria-hidden="true"></i>Mon profil</a>
                 <?php endif ?>
-                <?php if (isset($_SESSION['auth']) && $_SESSION['auth']->role_role == 'admin' or $_SESSION['auth']->role_role == 'responsable') : ?>
+                <?php if (isset($_SESSION['auth']) && @$_SESSION['auth']->role_role == 'admin' or @$_SESSION['auth']->role_role == 'responsable') : ?>
                     <a href="page_admin.php"><i class="fa fa-cog" aria-hidden="true"></i>Administration</a>
+                <?php endif ?>
+                <?php if (isset($_SESSION['auth']) && @$_SESSION['auth']->role_role == 'member') : ?>
+                    <a href="page_admin.php"><i class="fa fa-info" aria-hidden="true"></i> Informations</a>
                 <?php endif ?>
             </div>
         </header>
@@ -398,8 +410,11 @@ require('db.php'); //Appel de la DB
                     <a href="../article/actualite.php"><i class="fa fa-home " aria-hidden="true"></i>Actualités</a>
                     <a href="../profil.php"><i class="fa fa-user" aria-hidden="true"></i>Mon profil</a>
                 <?php endif ?>
-                <?php if (isset($_SESSION['auth']) && $_SESSION['auth']->role_role == 'admin' or $_SESSION['auth']->role_role == 'responsable') : ?>
+                <?php if (isset($_SESSION['auth']) && @$_SESSION['auth']->role_role == 'admin' or @$_SESSION['auth']->role_role == 'responsable') : ?>
                     <a href="../admin/page_admin.php"><i class="fa fa-cog" aria-hidden="true"></i>Administration</a>
+                <?php endif ?>
+                <?php if (isset($_SESSION['auth']) && @$_SESSION['auth']->role_role == 'member') : ?>
+                    <a href="../admin/page_admin.php"><i class="fa fa-info" aria-hidden="true"></i> Informations</a>
                 <?php endif ?>
             </div>
         </header>
@@ -444,8 +459,11 @@ require('db.php'); //Appel de la DB
                     <a href="../article/actualite.php"><i class="fa fa-home " aria-hidden="true"></i>Actualités</a>
                     <a href="../profil.php"><i class="fa fa-user" aria-hidden="true"></i>Mon profil</a>
                 <?php endif ?>
-                <?php if (isset($_SESSION['auth']) && $_SESSION['auth']->role_role == 'admin' or $_SESSION['auth']->role_role == 'responsable') : ?>
+                <?php if (isset($_SESSION['auth']) && @$_SESSION['auth']->role_role == 'admin' or @$_SESSION['auth']->role_role == 'responsable') : ?>
                     <a href="../admin/page_admin.php"><i class="fa fa-cog" aria-hidden="true"></i>Administration</a>
+                <?php endif ?>
+                <?php if (isset($_SESSION['auth']) && @$_SESSION['auth']->role_role == 'member') : ?>
+                    <a href="../admin/page_admin.php"><i class="fa fa-info" aria-hidden="true"></i> Informations</a>
                 <?php endif ?>
             </div>
         </header>
@@ -490,8 +508,11 @@ require('db.php'); //Appel de la DB
                     <a href="../article/actualite.php"><i class="fa fa-home " aria-hidden="true"></i>Actualités</a>
                     <a href="../profil.php"><i class="fa fa-user" aria-hidden="true"></i>Mon profil</a>
                 <?php endif ?>
-                <?php if (isset($_SESSION['auth']) && $_SESSION['auth']->role_role == 'admin' or $_SESSION['auth']->role_role == 'responsable') : ?>
+                <?php if (isset($_SESSION['auth']) && @$_SESSION['auth']->role_role == 'admin' or @$_SESSION['auth']->role_role == 'responsable') : ?>
                     <a href="../admin/page_admin.php"><i class="fa fa-cog" aria-hidden="true"></i>Administration</a>
+                <?php endif ?>
+                <?php if (isset($_SESSION['auth']) && @$_SESSION['auth']->role_role == 'member') : ?>
+                    <a href="../admin/page_admin.php"><i class="fa fa-info" aria-hidden="true"></i> Informations</a>
                 <?php endif ?>
             </div>
         </header>
@@ -535,8 +556,11 @@ require('db.php'); //Appel de la DB
                     <a href="article/actualite.php"><i class="fa fa-home " aria-hidden="true"></i>Actualités</a>
                     <a href="profil.php"><i class="fa fa-user" aria-hidden="true"></i>Mon profil</a>
                 <?php endif ?>
-                <?php if (isset($_SESSION['auth']) && $_SESSION['auth']->role_role == 'admin' or $_SESSION['auth']->role_role == 'responsable') : ?>
+                <?php if (isset($_SESSION['auth']) && @$_SESSION['auth']->role_role == 'admin' or @$_SESSION['auth']->role_role == 'responsable') : ?>
                     <a href="admin/page_admin.php"><i class="fa fa-cog" aria-hidden="true"></i>Administration</a>
+                <?php endif ?>
+                <?php if (isset($_SESSION['auth']) && @$_SESSION['auth']->role_role == 'member') : ?>
+                    <a href="admin/page_admin.php"><i class="fa fa-info" aria-hidden="true"></i> Informations</a>
                 <?php endif ?>
             </div>
         </header>

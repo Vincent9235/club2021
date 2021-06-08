@@ -15,8 +15,8 @@ $user = $req->fetch(PDO::FETCH_ASSOC);
 
 <body>
 	<div class="txt-center">
-		<h2>Edition du profil</h2>
-		<div align="left">
+		<h2 class="h1">Edition du profil</h2>
+		
 			<form class="form form--m center" method="POST" action="" enctype="multipart/form-data">
 				<label>Adresse: </label>
 				<input type="text" name="newadresse" placeholder="Nouvelle adresse" value="<?= $user['user_adresse']; ?>" /><br /><br />
@@ -90,8 +90,6 @@ $user = $req->fetch(PDO::FETCH_ASSOC);
 				}
 				?>
 			</form>
-		</div>
 	</div>
 </body>
-
 </html>

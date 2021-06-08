@@ -5,11 +5,7 @@ if (!isset($_SESSION['auth'])) {
     header('Location:../connexion.php');
     exit;
 }
-//Si l'utilisateur est un membre, redirection à la page actualite.php
-if ($_SESSION['auth']->role_role == 'member') {
-    header('Location:../article/actualite.php');
-    exit;
-}
+
 ?>
 <body>
     <div class="container">
@@ -19,8 +15,10 @@ if ($_SESSION['auth']->role_role == 'member') {
                 <a class="btn btn--custom" href="../club/club.php">Voir les clubs</a>   
                 <h2 class="h2">Ligues</h2>
                 <a class="btn btn--custom" href="../ligue/ligue.php">Voir les ligues</a>
+                <?php if($_SESSION['auth']->role_role =='admin' OR $_SESSION['auth']->role_role =='responsable' ): ?>
                 <h2 class="h2">Membres de la M2L</h2>
-                <a class="btn btn--custom" href="../membres/membres.php">Voir les membres de la M2L</a>               
+                <a class="btn btn--custom" href="../membres/membres.php">Voir les membres de la M2L</a>  
+                <?php endif ?>             
                 <h2 class="h2">Responsables de la M2L</h2>
                 <a class="btn btn--custom" href="../responsable.php">Voir les responsables de la M2L</a>
                 <div class="content1col"></div>

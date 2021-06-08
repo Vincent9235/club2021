@@ -36,11 +36,11 @@ $user = $req->fetch(PDO::FETCH_ASSOC);
 
                 <button class="card-btn"><span></span>
                     <i class="fa fa-pencil-square-o" aria-hidden="true" name="update"></i>
-                    <a href="modif_profil.php">Editer mon profil</a>
+                    <a class="a-profil" href="modif_profil.php">Editer mon profil</a>
                 </button>
                 <button class="card-btn"><span></span>
                     <i class="fa fa-trash-o" aria-hidden="true" name="suppr"></i>
-                    <a href="suppr_profil.php" onclick="return confirm('Souhaitez vous vraiment supprimer votre profil ? Cette action est irreversible')">Supprimer mon profil</a>
+                    <a class="a-profil" href="suppr_profil.php" onclick="return confirm('Souhaitez vous vraiment supprimer votre profil ? Cette action est irreversible')">Supprimer mon profil</a>
                 </button>
             <?php endif ?>
             </div>

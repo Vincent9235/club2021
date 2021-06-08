@@ -4,18 +4,16 @@ if (!isset($_SESSION['auth'])) {
     header('Location:../connexion.php');
     exit;
 }
-if ($_SESSION['auth']->role_role == 'member') {
-    header('Location:../article/actualite.php');
-    exit;
-}
 ?>
 
 <body>
     <div class="txt-center">
         <br>
-        <a class="btn--default" href="form_add_ligue.php">
-            <span class="icon"><i class="fa fa-plus-circle" aria-hidden="true"></i></span>
-            Ajouter une ligue</a>
+        <?php if ($_SESSION['auth']->role_role == 'admin' or $_SESSION['auth']->role_role == 'responsable') : ?>
+            <a class="btn--default" href="form_add_ligue.php">
+                <span class="icon"><i class="fa fa-plus-circle" aria-hidden="true"></i></span>
+                Ajouter une ligue</a>
+        <?php endif ?>
     </div>
     <!--Formulaire de recherche--->
     <form class="form form--m center" method="GET">
@@ -29,7 +27,7 @@ if ($_SESSION['auth']->role_role == 'member') {
     $query = "SELECT * FROM ligues ";
     $queryCount = "SELECT count(ligue_id) as count FROM ligues";
     $params = [];
-    
+
     //Recherche par nom
     if (!empty($_GET['q'])) {
         $query .= " WHERE ligue_nom LIKE :ligue_nom";
@@ -58,29 +56,37 @@ if ($_SESSION['auth']->role_role == 'member') {
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
+                <?php if ($_SESSION['auth']->role_role == 'admin' or $_SESSION['auth']->role_role == 'responsable') : ?>
+                    <th>ID</th>
+                <?php endif ?>
                 <th>Nom</th>
                 <th>Adresse</th>
                 <th>Code Postal</th>
                 <th>Ville</th>
                 <th>Téléphone</th>
                 <th>Email</th>
-                <th>Modifier</th>
-                <th>Supprimer</th>
+                <?php if ($_SESSION['auth']->role_role == 'admin' or $_SESSION['auth']->role_role == 'responsable') : ?>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                <?php endif ?>
             </tr>
 
             <?php foreach ($products as $product) : ?>
                 <tr>
-                    <td><?= $product['ligue_id'] ?></td>
+                    <?php if ($_SESSION['auth']->role_role == 'admin' or $_SESSION['auth']->role_role == 'responsable') : ?>
+                        <td><?= $product['ligue_id'] ?></td>
+                    <?php endif ?>
                     <td><?= $product['ligue_nom'] ?></td>
                     <td><?= $product['ligue_adresse'] ?></td>
                     <td><?= $product['ligue_cp'] ?></td>
                     <td><?= $product['ligue_ville'] ?></td>
                     <td><?= $tel = implode(' ', str_split($product['ligue_tel'], 2)); ?></td>
                     <td><?= $product['ligue_email'] ?></td>
-                    <td><a class="btn--default btn-mini" href="form_modif_ligue.php?numID=<?= $product['ligue_id'] ?>"><i class="fa fa-pencil-square-o" aria-hidden="true" name="update"></i></a></td>
-                    <!--<td><form method="post" action=""><input class="btn--custom" type="submit" value="Supprimer" id="delete_user" name="delete_user"/></form></td>-->
-                    <td><a class="btn--delete btn-mini delete-confirm" href="form_suppr_ligue.php?numID=<?= $product['ligue_id'] ?>" onclick="return confirm('Souhaitez vous supprimer cette ligue ?')"><i class="fa fa-trash-o" aria-hidden="true" name="suppr"></i></a></td>
+                    <?php if ($_SESSION['auth']->role_role == 'admin' or $_SESSION['auth']->role_role == 'responsable') : ?>
+                        <td><a class="btn--default btn-mini" href="form_modif_ligue.php?numID=<?= $product['ligue_id'] ?>"><i class="fa fa-pencil-square-o" aria-hidden="true" name="update"></i></a></td>
+                        <!--<td><form method="post" action=""><input class="btn--custom" type="submit" value="Supprimer" id="delete_user" name="delete_user"/></form></td>-->
+                        <td><a class="btn--delete btn-mini delete-confirm" href="form_suppr_ligue.php?numID=<?= $product['ligue_id'] ?>" onclick="return confirm('Souhaitez vous supprimer cette ligue ?')"><i class="fa fa-trash-o" aria-hidden="true" name="suppr"></i></a></td>
+                    <?php endif ?>
                 </tr>
             <?php endforeach ?>
     </table>

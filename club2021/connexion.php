@@ -45,13 +45,12 @@ require('inc/header.php');
                     echo '<br><strong>Vous êtes connecté<br/>';
                     Header('Location:article/actualite.php');
                 }
-
                 $req->closeCursor(); //On ferme la connexion à la base 
             }
         }
         ?>
-        </form>
+        
     </div>
+    </form>
 </body>
-
 </html>

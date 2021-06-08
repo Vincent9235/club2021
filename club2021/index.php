@@ -5,7 +5,7 @@ require('inc/header.php');
 <body>
     <div class="txt-center">
         <div class="content1col">
-            <h1 class="h1-index"><i class="fa fa-home " aria-hidden="true"></i>Accueil Maison des Ligues</h1>
+            <h1 class="h1-index"><i class="fa fa-home " aria-hidden="true"></i> Accueil Maison des Ligues</h1>
             <div class="content1col">
                 <h2 class="h4-index">Vous possédez déjà un compte?</h2>
                 <a class="btn btn--custom" href="connexion.php">Se connecter</a>
